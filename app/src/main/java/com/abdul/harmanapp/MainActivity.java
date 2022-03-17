@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,15 +15,20 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     EditText etName; //declaration
+    public static String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Log.i(TAG,"oncreate");
+
         etName = findViewById(R.id.etName); //initialization or taking handle on etName
     }
 
     public void clickHandler(View view) {
+        Log.w(TAG,"clickHandler");
+
         switch (view.getId()){
             case R.id.btnLogin:
                 launchHomeActivity();
@@ -36,11 +42,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void launchDialer() {
-        Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:9880979732"));
+        Log.e(TAG,"launchDialer");
+
+        Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("9880979732"));
         startActivity(dialIntent);
     }
 
     private void launchHomeActivity() {
+        Log.d(TAG,"launchDialer");
+
         String input = etName.getText().toString();
         // Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
         Intent hIntent = new Intent(MainActivity.this, HomeActivity.class);

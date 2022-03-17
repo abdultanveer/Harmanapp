@@ -44,9 +44,21 @@ public class MainActivity extends AppCompatActivity {
     private void launchDialer() {
         Log.e(TAG,"launchDialer");
 
-        Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("9880979732"));
+        Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:9880979732"));
+        int c  = add(10,20);
+        int k = 5+6;
+        int s = c *k ;
         startActivity(dialIntent);
     }
+
+
+    private  int add(int a, int b){
+        Log.e(TAG,"add");
+
+        int j = 20;
+        return a+b;
+    }
+
 
     private void launchHomeActivity() {
         Log.d(TAG,"launchDialer");

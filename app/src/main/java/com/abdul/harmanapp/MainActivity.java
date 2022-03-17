@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -22,13 +23,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clickHandler(View view) {
-        String input = etName.getText().toString();
-       // Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
-        Intent hIntent = new Intent(MainActivity.this,com.abdul.harmanapp.HomeActivity.class);
-        hIntent.putExtra("ip",input);
-       // startActivity(hIntent);
-        ActivityCompat.startActivityForResult(this,hIntent,123,null);//1
+        switch (view.getId()){
+            case R.id.btnLogin:
+                launchHomeActivity();
+                break;
+            case R.id.btnDial:
+                launchDialer();
+                break;
+        }
 
+
+    }
+
+    private void launchDialer() {
+        Intent dialIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:9880979732"));
+        startActivity(dialIntent);
+    }
+
+    private void launchHomeActivity() {
+        String input = etName.getText().toString();
+        // Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
+        Intent hIntent = new Intent(MainActivity.this, HomeActivity.class);
+        hIntent.putExtra("ip",input);
+        // startActivity(hIntent);
+        ActivityCompat.startActivityForResult(this,hIntent,123,null);//1
     }
 
     @Override

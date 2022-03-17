@@ -2,6 +2,7 @@ package com.abdul.harmanapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -19,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void clickHandler(View view) {
         String input = etName.getText().toString();
-        Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, input, Toast.LENGTH_SHORT).show();
+        Intent hIntent = new Intent(MainActivity.this,com.abdul.harmanapp.HomeActivity.class);
+        hIntent.putExtra("ip",input);
+        startActivity(hIntent);
     }
 }

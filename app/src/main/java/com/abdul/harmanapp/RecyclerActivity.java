@@ -6,6 +6,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+
+//project = database
+//file -- table in db
+//line of the file = row in the db
+//commit[only the row that was changed is added along with the time stamp and the position]
+// vs save[whole file is added]
 public class RecyclerActivity extends AppCompatActivity {
     String[] countries = new String[]{"india","china","russia","ukraine"};//3
 

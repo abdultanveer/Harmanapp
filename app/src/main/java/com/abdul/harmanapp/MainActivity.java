@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,7 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    EditText etName; //declaration
+    EditText etName,etPin; //declaration
     public static String TAG = MainActivity.class.getSimpleName();
 
     @Override //memory is being allocated for the actvity
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG,"oncreate");
 
         etName = findViewById(R.id.etName); //initialization or taking handle on etName
+        etPin = findViewById(R.id.etPin); //initialization or taking handle on etName
+
         Button dialButton = findViewById(R.id.btnDial);
 
         registerForContextMenu(dialButton);
@@ -53,7 +56,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         Log.i(TAG,"onPause");
+        saveAppState();
 
+    }
+
+    private void saveAppState() {
+        //get the date from 2 edittexts
+        String name = etName.getText().toString();
+        String pin = etPin.getText().toString();
+        //create a file
+        SharedPreferences preferences = getSharedPreferences("Harmanfile",MODE_PRIVATE);
+        //open file in edit mode
+        SharedPreferences.Editor editor = preferences.edit();
+        //write to the file
+        editor.putString("cname",name);
+        editor.putString("cpin",pin);
+        //save the file
+        editor.apply();
     }
 
 
@@ -64,7 +83,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.i(TAG,"onResume");
+        restoreAppState();
+    }
 
+    private void restoreAppState() {
+        //read from the file
+        //put the data back into the edittexts
     }
 
     @Override

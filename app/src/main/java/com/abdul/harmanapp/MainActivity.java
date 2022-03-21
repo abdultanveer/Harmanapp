@@ -1,5 +1,6 @@
 package com.abdul.harmanapp;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -138,5 +140,18 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+         super.onOptionsItemSelected(item);
+         switch (item.getItemId()){
+           case  R.id.harmanid:
+               Toast.makeText(this, "harman sselected", Toast.LENGTH_SHORT).show();
+             break;
+           case  R.id.andid:
+               Toast.makeText(this, "android sselected", Toast.LENGTH_SHORT).show();
+
+               break;
+         }
+        return true;
+    }
 }

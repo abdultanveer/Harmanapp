@@ -17,13 +17,59 @@ public class MainActivity extends AppCompatActivity {
     EditText etName; //declaration
     public static String TAG = MainActivity.class.getSimpleName();
 
-    @Override
+    @Override //memory is being allocated for the actvity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.i(TAG,"oncreate");
 
         etName = findViewById(R.id.etName); //initialization or taking handle on etName
+    }
+
+    /**
+     * when the actvity is visible to the user
+     */
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(TAG,"onStart");
+
+    }
+
+    /**
+     * when activity goes in the background
+     * filling some form -- save its state
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i(TAG,"onPause");
+
+    }
+
+
+    /**
+     * restore the state of the app
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(TAG,"onResume");
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i(TAG,"onStop");
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG,"onDestroy");
+
     }
 
     public void clickHandler(View view) {

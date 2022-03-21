@@ -88,7 +88,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void restoreAppState() {
         //read from the file
+        SharedPreferences preferences = getSharedPreferences("Harmanfile",MODE_PRIVATE);
+        String name = preferences.getString("cname","");
+        String pin = preferences.getString("cpin","");
         //put the data back into the edittexts
+        Log.i(TAG, "name is--"+name+ "& pin is--"+pin);
+        etName.setText(name);
+        etPin.setText(pin);
     }
 
     @Override

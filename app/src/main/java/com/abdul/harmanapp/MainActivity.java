@@ -9,10 +9,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG,"oncreate");
 
         etName = findViewById(R.id.etName); //initialization or taking handle on etName
+        Button dialButton = findViewById(R.id.btnDial);
+
+        registerForContextMenu(dialButton);
     }
 
     /**
@@ -153,5 +158,17 @@ public class MainActivity extends AppCompatActivity {
                break;
          }
         return true;
+    }
+
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        return super.onContextItemSelected(item);
     }
 }

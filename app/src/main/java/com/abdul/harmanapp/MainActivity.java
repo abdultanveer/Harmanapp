@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -126,4 +128,15 @@ public class MainActivity extends AppCompatActivity {
             resultTv.setText(contact);
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+         super.onCreateOptionsMenu(menu);
+        MenuInflater menuInflater = getMenuInflater();
+        //inflate -- a baloon[xml] -- parsing the xml and creating its corresponding memory variables
+        menuInflater.inflate(R.menu.main_menu,menu); //after inflating attach the baloon to menu
+        return true;
+    }
+
+    
 }

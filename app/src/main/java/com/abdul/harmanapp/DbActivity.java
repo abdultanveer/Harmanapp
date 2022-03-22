@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.abdul.harmanapp.database.NotesDao;
+
 public class DbActivity extends AppCompatActivity {
 EditText etTitle, etSubtitle;
+NotesDao notesDao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,6 +18,7 @@ EditText etTitle, etSubtitle;
 
         etTitle = findViewById(R.id.etTitle);
         etSubtitle = findViewById(R.id.etSubtitle);
+        notesDao = new NotesDao(this);
     }
 
     public void dbHandler(View view) {
@@ -38,5 +42,6 @@ EditText etTitle, etSubtitle;
         String title = etTitle.getText().toString();
         String subtitle = etSubtitle.getText().toString();
         //put the data into db
+        notesDao.createRow(title,subtitle);
     }
 }

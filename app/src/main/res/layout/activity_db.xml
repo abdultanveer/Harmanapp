@@ -12,9 +12,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="46dp"
+        android:layout_marginBottom="160dp"
         android:ems="10"
         android:hint="enter title"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,33 +34,47 @@
 
     <Button
         android:id="@+id/btnCommit"
-        android:onClick="dbHandler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="37dp"
+        android:onClick="dbHandler"
         android:text="commit"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etSubtitle" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnGet"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnGet"
-        android:onClick="dbHandler"
-
         android:layout_width="wrap_content"
+
         android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
+        android:onClick="dbHandler"
         android:text="get"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btnCommit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etSubtitle" />
 
     <TextView
         android:id="@+id/tvOutput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="50dp"
         android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView2"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCommit" />
+        app:layout_constraintTop_toBottomOf="@+id/etTitle" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

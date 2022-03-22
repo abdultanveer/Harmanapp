@@ -1,12 +1,15 @@
 package com.abdul.harmanapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.abdul.harmanapp.database.NotesAdapter;
 import com.abdul.harmanapp.database.NotesDao;
 
 public class DbActivity extends AppCompatActivity {
@@ -21,6 +24,10 @@ NotesDao notesDao;
         etSubtitle = findViewById(R.id.etSubtitle);
         notesDao = new NotesDao(this);
         notesDao.openDb();
+        NotesAdapter adapter = new NotesAdapter(notesDao);
+        RecyclerView mreRecyclerView = findViewById(R.id.recyclerView2);
+        mreRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mreRecyclerView.setAdapter(adapter);
     }
 
     public void dbHandler(View view) {

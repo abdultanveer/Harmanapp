@@ -41,4 +41,23 @@ public class NotesDao {
     public void updateRow(){}
     public void deleteRow(){}
 
+    public String[] getRow(int position){
+        Cursor cursor = database.query(FeedEntry.TABLE_NAME,null,null,null,null,null,null);
+        cursor.moveToPosition(position);
+
+        int titleIndex = cursor.getColumnIndexOrThrow(FeedEntry.COLUMN_NAME_TITLE); //1
+        int subTitleIndex = cursor.getColumnIndexOrThrow(FeedEntry.COLUMN_NAME_SUBTITLE);//2
+
+        String[] result = new String[2];
+        result[0] = cursor.getString(titleIndex);
+        result[1] = cursor.getString(subTitleIndex);
+        return  result;
+
+    }
+
+    public int getNoRows(){
+        Cursor cursor = database.query(FeedEntry.TABLE_NAME,null,null,null,null,null,null);
+        return cursor.getCount();
+    }
+
 }

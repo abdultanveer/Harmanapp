@@ -19,6 +19,7 @@ NotesDao notesDao;
         etTitle = findViewById(R.id.etTitle);
         etSubtitle = findViewById(R.id.etSubtitle);
         notesDao = new NotesDao(this);
+        notesDao.openDb();
     }
 
     public void dbHandler(View view) {
@@ -43,5 +44,7 @@ NotesDao notesDao;
         String subtitle = etSubtitle.getText().toString();
         //put the data into db
         notesDao.createRow(title,subtitle);
+        etTitle.setText("");
+        etSubtitle.setText("");
     }
 }

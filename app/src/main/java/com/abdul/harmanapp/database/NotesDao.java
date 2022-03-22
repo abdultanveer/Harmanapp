@@ -2,6 +2,7 @@ package com.abdul.harmanapp.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.abdul.harmanapp.database.FeedReaderContract.FeedEntry;
 
@@ -28,7 +29,15 @@ public class NotesDao {
         values.put(FeedEntry.COLUMN_NAME_SUBTITLE,subtitle);
         database.insert(FeedEntry.TABLE_NAME,null,values);
     }
-    public void readRow(){}
+    public String readRow(){
+        Cursor cursor = database.query(FeedEntry.TABLE_NAME,null,null,null,null,null,null);
+        cursor.moveToLast();
+        int titleIndex = cursor.getColumnIndexOrThrow(FeedEntry.COLUMN_NAME_TITLE); //1
+        int subTitleIndex = cursor.getColumnIndexOrThrow(FeedEntry.COLUMN_NAME_SUBTITLE);//2
+        String title =  cursor.getString(titleIndex);
+        String subtitle = cursor.getString(subTitleIndex);
+        return title + "\n"+ subtitle;
+    }
     public void updateRow(){}
     public void deleteRow(){}
 

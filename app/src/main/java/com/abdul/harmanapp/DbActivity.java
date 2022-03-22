@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.abdul.harmanapp.database.NotesDao;
 
@@ -35,7 +36,10 @@ NotesDao notesDao;
 
     private void retreiveData() {
         //query the db
+       String row = notesDao.readRow();
         //set the result in textview
+        TextView tvOutput = findViewById(R.id.tvOutput);
+        tvOutput.setText(row);
     }
 
     private void saveData() {

@@ -2,8 +2,11 @@ package com.abdul.harmanapp.async;
 
 import android.app.Service;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.util.Log;
+
+import com.abdul.harmanapp.R;
 
 public class MusicService extends Service {
     public static String TAG = MusicService.class.getSimpleName();
@@ -22,7 +25,8 @@ public class MusicService extends Service {
         Log.i(TAG,"service started");
         String fileTobeplayed = intent.getExtras().getString("musicfilename");
         Log.i(TAG,"playing--"+fileTobeplayed);
-
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.sample);
+        mediaPlayer.start();
         return START_STICKY;
 
     }

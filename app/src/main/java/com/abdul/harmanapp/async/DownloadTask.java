@@ -2,6 +2,7 @@ package com.abdul.harmanapp.async;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
 import android.widget.ProgressBar;
 
 /**
@@ -14,6 +15,12 @@ public class DownloadTask extends AsyncTask<String,Integer,Void> {
 
     public DownloadTask(ProgressBar progressBar) {
         mProgressBar = progressBar; //instantiation
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        mProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -37,5 +44,11 @@ public class DownloadTask extends AsyncTask<String,Integer,Void> {
         super.onProgressUpdate(values);
         mProgressBar.setProgress(values[0]);
 
+    }
+
+    @Override
+    protected void onPostExecute(Void unused) {
+        super.onPostExecute(unused);
+        mProgressBar.setVisibility(View.INVISIBLE);
     }
 }

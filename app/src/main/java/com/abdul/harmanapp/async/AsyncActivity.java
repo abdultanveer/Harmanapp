@@ -2,6 +2,7 @@ package com.abdul.harmanapp.async;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.RemoteInput;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -47,6 +48,24 @@ ProgressBar mProgressBar;
     }
 
     private void showNotification() {
+        String replyLabel = "reply back";
+                //getResources().getString(R.string.reply_label);
+        RemoteInput remoteInput = new RemoteInput.Builder("KEY_TEXT_REPLY")
+                .setLabel(replyLabel)
+                .build();
+        PendingIntent replyPendingIntent =
+                PendingIntent.getBroadcast(getApplicationContext(),
+                        123,new Intent(),
+                        //getMessageReplyIntent(conversation.getConversationId()),
+                        PendingIntent.FLAG_UPDATE_CURRENT);
+        NotificationCompat.Action action =
+                new NotificationCompat.Action.Builder(R.drawable.ic_launcher_foreground,
+                       "label title",
+                       // getString(R.string.label),
+                        replyPendingIntent)
+                        .addRemoteInput(remoteInput)
+                        .build();
+
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         //in a hotel -- flight midnight--book a cab -- create an intent -- reception[operating system] - fire intent on my behalf
@@ -58,6 +77,7 @@ ProgressBar mProgressBar;
                 .setContentTitle("harman title")
                 .setContentText("android app dev")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .addAction(action)
                 .setContentIntent(pendingIntent);
 
 
@@ -87,6 +107,7 @@ ProgressBar mProgressBar;
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel channel = new NotificationChannel("harman_imp_ID", name, importance);
             channel.setDescription(description);
+            channel.setShowBadge(true);
             // Register the channel with the system; you can't change the importance
             // or other notification behaviors after this
              notificationManager = getSystemService(NotificationManager.class);

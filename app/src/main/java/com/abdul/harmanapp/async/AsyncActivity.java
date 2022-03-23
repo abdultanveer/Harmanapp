@@ -5,12 +5,14 @@ import androidx.core.app.NotificationCompat;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.abdul.harmanapp.MainActivity;
 import com.abdul.harmanapp.R;
 
 public class AsyncActivity extends AppCompatActivity {
@@ -45,12 +47,19 @@ ProgressBar mProgressBar;
     }
 
     private void showNotification() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        //in a hotel -- flight midnight--book a cab -- create an intent -- reception[operating system] - fire intent on my behalf
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
         createNotificationChannel();
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "harman_imp_ID")
                 .setSmallIcon(R.drawable.ic_launcher_background)
                 .setContentTitle("harman title")
                 .setContentText("android app dev")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent);
+
 
         notificationManager.notify(12, builder.build()); //id 12 -- is notfication id to update or cancel a notification
 

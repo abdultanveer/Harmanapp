@@ -20,6 +20,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     EditText etName,etPin; //declaration
     public static String TAG = MainActivity.class.getSimpleName();
@@ -73,6 +75,15 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("cpin",pin);
         //save the file
         editor.apply();
+
+        ArrayList phnos = new ArrayList();
+        phnos.add("234567");
+        phnos.add("abdul.tanveer@gmail");
+
+        ArrayList<Integer> phonesArrayList = new ArrayList<>();
+        phonesArrayList.add(2345678);
+       // phonesArrayList.add("abdul.tanveer@");
+
     }
 
 

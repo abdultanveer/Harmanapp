@@ -40,11 +40,23 @@
 
     <Button
         android:id="@+id/btnStop"
-        android:onClick="downloadHandler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:onClick="downloadHandler"
         android:text="stop"
         app:layout_constraintBaseline_toBaselineOf="@+id/btnStart"
         app:layout_constraintStart_toEndOf="@+id/btnStart" />
+
+    <Button
+        android:id="@+id/btnNotify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:onClick="downloadHandler"
+
+        android:text="notify"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDownload" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@
     package="com.abdul.harmanapp">
 
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,13 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Harmanapp">
-        <service
-            android:name=".async.MusicService"
-            android:enabled="true"
-            android:exported="true"></service>
-
         <activity
-            android:name=".async.AsyncActivity"
+            android:name=".webservices.WhowroteitActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,9 +21,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".async.MusicService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name=".async.AsyncActivity"
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".DbActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".RecyclerActivity"
             android:exported="true" />

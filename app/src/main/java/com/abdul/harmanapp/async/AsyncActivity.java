@@ -7,9 +7,12 @@ import androidx.core.app.RemoteInput;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -19,6 +22,7 @@ import com.abdul.harmanapp.R;
 public class AsyncActivity extends AppCompatActivity {
 ProgressBar mProgressBar;
     NotificationManager notificationManager;
+    public static String TAG = AsyncActivity.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,12 +59,12 @@ ProgressBar mProgressBar;
                 .build();
         PendingIntent replyPendingIntent =
                 PendingIntent.getBroadcast(getApplicationContext(),
-                        123,new Intent(),
+                        123,new Intent(this,ReplyReceiver.class),
                         //getMessageReplyIntent(conversation.getConversationId()),
                         PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Action action =
                 new NotificationCompat.Action.Builder(R.drawable.ic_launcher_foreground,
-                       "label title",
+                       "reply back",
                        // getString(R.string.label),
                         replyPendingIntent)
                         .addRemoteInput(remoteInput)
@@ -113,5 +117,21 @@ ProgressBar mProgressBar;
              notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
+    }
+}
+class ReplyReceiver extends BroadcastReceiver{
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        getMessageText(intent);
+    }
+
+    private CharSequence getMessageText(Intent intent) {
+        Bundle remoteInput = RemoteInput.getResultsFromIntent(intent);
+        if (remoteInput != null) {
+            Log.i(AsyncActivity.TAG,remoteInput.getCharSequence("KEY_TEXT_REPLY").toString());
+            return remoteInput.getCharSequence("KEY_TEXT_REPLY");
+        }
+        return null;
     }
 }

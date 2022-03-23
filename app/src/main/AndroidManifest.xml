@@ -11,6 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Harmanapp">
+        <service
+            android:name=".async.MusicService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity
             android:name=".async.AsyncActivity"
             android:exported="true">
@@ -22,9 +27,7 @@
         </activity>
         <activity
             android:name=".DbActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".RecyclerActivity"
             android:exported="true" />
@@ -33,7 +36,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

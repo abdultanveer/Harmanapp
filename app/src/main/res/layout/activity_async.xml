@@ -8,12 +8,12 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:visibility="invisible"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="51dp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,4 +27,24 @@
         android:text="Download"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="downloadHandler"
+        android:text="start"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnDownload"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnStop"
+        android:onClick="downloadHandler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="stop"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnStart"
+        app:layout_constraintStart_toEndOf="@+id/btnStart" />
 </androidx.constraintlayout.widget.ConstraintLayout>

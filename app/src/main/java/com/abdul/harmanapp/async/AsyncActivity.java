@@ -2,6 +2,7 @@ package com.abdul.harmanapp.async;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -18,6 +19,23 @@ ProgressBar mProgressBar;
     }
 
     public void downloadHandler(View view) {
+
+        switch (view.getId()){
+            case R.id.btnDownload:
+                downloadMovie();
+                break;
+            case R.id.btnStart:
+                Intent serviceIntent = new Intent(this,MusicService.class);
+                startService(serviceIntent);
+                break;
+            case R.id.btnStop:
+                Intent servIntent = new Intent(this,MusicService.class);
+                stopService(servIntent);
+                break;
+        }
+    }
+
+    private void downloadMovie() {
         //create a background thread[asynctask]
         DownloadTask downloadTask = new DownloadTask(mProgressBar);
         downloadTask.execute("http://mymoviedownloadurl.com");

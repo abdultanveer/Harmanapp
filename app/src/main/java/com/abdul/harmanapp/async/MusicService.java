@@ -20,6 +20,9 @@ public class MusicService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
          super.onStartCommand(intent, flags, startId);
         Log.i(TAG,"service started");
+        String fileTobeplayed = intent.getExtras().getString("musicfilename");
+        Log.i(TAG,"playing--"+fileTobeplayed);
+
         return START_STICKY;
 
     }

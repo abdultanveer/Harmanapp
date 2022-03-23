@@ -26,6 +26,7 @@ ProgressBar mProgressBar;
                 break;
             case R.id.btnStart:
                 Intent serviceIntent = new Intent(this,MusicService.class);
+                serviceIntent.putExtra("musicfilename","latest.mp3");
                 startService(serviceIntent);
                 break;
             case R.id.btnStop:
